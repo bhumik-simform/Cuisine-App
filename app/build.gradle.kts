@@ -37,6 +37,8 @@ android {
 
 dependencies {
     implementation(libs.gson)
+    implementation(libs.picasso)
+    implementation(libs.glide)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)

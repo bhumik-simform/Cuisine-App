@@ -24,4 +24,8 @@
     <color name="md_theme_light_onErrorContainer">#410002</color>
 
     <color name="accent_green">#4CAF50</color>
+
+    <color name="star_active">#F58514</color>
+    <color name="star_inactive">#E0E0E0</color>
+
 </resources>
