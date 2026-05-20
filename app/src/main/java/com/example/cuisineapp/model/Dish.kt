@@ -9,7 +9,7 @@ data class Dish(
     val strMealThumb: String, // The image URL
     val strYoutube: String,
 
-    val rating: Double,
+    val rating: String,
     val cookingTime: String,
     val spiceLevel: String,
 

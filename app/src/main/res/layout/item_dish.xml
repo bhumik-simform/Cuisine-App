@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    android:backgroundTint="@color/md_theme_light_surface"
+    android:elevation="4dp"
+    app:cardCornerRadius="20dp"
+    app:strokeWidth="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_dish_image"
+            android:layout_width="110dp"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedCorner"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/tv_dish_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/inter_bold"
+            android:maxLines="1"
+            android:textColor="@color/md_theme_light_onSurface"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/imgBtn_favourite"
+            app:layout_constraintStart_toEndOf="@id/iv_dish_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Adana Kebab" />
+
+        <ImageButton
+            android:id="@+id/imgBtn_favourite"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@null"
+            android:backgroundTint="@color/md_theme_light_surface"
+            android:importantForAccessibility="no"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_favorite_outlined"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/favorite_btn_tint" />
+
+
+        <TextView
+            android:id="@+id/tv_dish_area"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/inter_semibold"
+            android:maxLines="1"
+            android:textColor="@color/md_theme_light_onSurfaceVariant"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="@id/tv_dish_name"
+            app:layout_constraintStart_toStartOf="@id/tv_dish_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_dish_name"
+            tools:text="Turkish" />
+
+        <RatingBar
+            android:id="@+id/rb_dish_rating"
+            style="?attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/star_inactive"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressTint="@color/star_active"
+            android:rating="3.2"
+            android:secondaryProgressTint="@color/star_active"
+            android:stepSize="0.1"
+            app:layout_constraintStart_toStartOf="@id/tv_dish_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_dish_area" />
+
+        <TextView
+            android:id="@+id/tv_spice_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_label_card"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="2dp"
+            android:textColor="@color/md_theme_light_onSurface"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/tv_dish_name"
+            app:layout_constraintTop_toBottomOf="@id/rb_dish_rating"
+            tools:text="Spice" />
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_explore_btn"
+            android:importantForAccessibility="no"
+            android:padding="4dp"
+            android:src="@drawable/ic_arrow_forward"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_spice_level"
+            app:tint="@color/md_theme_light_onPrimary" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
