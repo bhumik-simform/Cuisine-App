@@ -6,11 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.home.MainActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.main.MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_main"
-        android:layout_width="0dp"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager_main"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
@@ -18,8 +19,8 @@
         android:id="@+id/bottom_navigation_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/md_theme_light_background"
-        app:itemIconSize="24sp"
+        android:background="@color/md_theme_light_surface"
+        app:itemIconSize="24dp"
         app:itemIconTint="@color/bottom_nav_icon_colors"
         app:itemRippleColor="@null"
         app:itemActiveIndicatorStyle="@null"
