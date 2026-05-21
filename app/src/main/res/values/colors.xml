@@ -9,7 +9,7 @@
     <color name="md_theme_light_primaryContainer">#FFDBCF</color>
     <color name="md_theme_light_onPrimaryContainer">#331200</color>
 
-    <color name="md_theme_light_background">#FFF8F1</color>
+    <color name="md_theme_light_background">#FEEFDB</color>
     <color name="md_theme_light_onBackground">#2B2B2B</color>
 
     <color name="md_theme_light_surface">#FFFFFF</color>

@@ -1,7 +1,6 @@
 package com.example.cuisineapp.ui.main
 
 import android.os.Bundle
-import android.window.OnBackInvokedDispatcher
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cuisineapp.R
+import com.example.cuisineapp.data.DishRepository
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        DishRepository.loadDishes(this)
         setupViewPager()
         setupBottomNav()
         connectPagerBottomNav()

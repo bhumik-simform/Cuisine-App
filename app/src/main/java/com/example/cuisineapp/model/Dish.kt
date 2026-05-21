@@ -5,9 +5,12 @@ data class Dish(
     val strMeal: String,
     val strCategory: String,
     val strArea: String,
+    val strCountry: String,
     val strInstructions: String,
+
     val strMealThumb: String, // The image URL
     val strYoutube: String,
+    val strSource: String,
 
     val rating: String,
     val cookingTime: String,

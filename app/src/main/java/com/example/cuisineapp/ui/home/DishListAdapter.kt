@@ -3,7 +3,6 @@ package com.example.cuisineapp.ui.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
@@ -47,7 +46,7 @@ class DishListAdapter(
         fun bindData(dish: Dish) {
             Glide.with(itemView.context).load(dish.strMealThumb)
                 .placeholder(R.drawable.ic_placeholder_image)
-                .error(R.drawable.error_image)
+                .error(R.drawable.ic_error_image)
                 .into(dishImageView)
 
             dishNameTextView.text = dish.strMeal
