@@ -13,6 +13,7 @@ import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
 import com.example.cuisineapp.model.Dish
 import com.example.cuisineapp.ui.details.DetailsFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() {
 
@@ -43,7 +44,7 @@ class HomeFragment : Fragment() {
 
             requireActivity().supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.detail_fragment_Container, detailsFragment)
+                .replace(R.id.fragment_container_main, detailsFragment)
                 .addToBackStack(null)
                 .commit()
         }

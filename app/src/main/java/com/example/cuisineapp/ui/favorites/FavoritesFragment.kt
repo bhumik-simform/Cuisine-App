@@ -8,20 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.Visibility
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
 import com.example.cuisineapp.model.Dish
 import com.example.cuisineapp.ui.details.DetailsFragment
 import com.example.cuisineapp.ui.home.DishListAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class FavoritesFragment : Fragment() {
 
     private lateinit var favoriteManger: FavoriteManger
     private lateinit var adapter: DishListAdapter
 
-    lateinit var favoritesRecyclerView: RecyclerView
-    lateinit var emptyView: View
+    private lateinit var favoritesRecyclerView: RecyclerView
+    private lateinit var emptyView: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,9 +48,10 @@ class FavoritesFragment : Fragment() {
 
             detailsFragment.arguments = bundle
 
+
             requireActivity().supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.detail_fragment_Container, detailsFragment)
+                .replace(R.id.fragment_container_main, detailsFragment)
                 .addToBackStack(null)
                 .commit()
         }
