@@ -68,11 +68,8 @@ class HomeFragment : Fragment() {
         adapter.submitList(allDishes)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
-        if(::adapter.isInitialized) {
-            adapter.notifyDataSetChanged()
-        }
+        adapter.notifyDataSetChanged()
     }
 }

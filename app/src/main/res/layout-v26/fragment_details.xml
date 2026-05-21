@@ -168,16 +168,16 @@
                         android:textColor="@color/md_theme_light_onSurfaceVariant"
                         android:textSize="12sp"
                         tools:text="Meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow" />
-
+                
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/btn_know_more"
+                android:id="@+id/btn_share_dish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/btn_know_more_info"
+                android:text="@string/btn_text_share_dish"
                 app:layout_constraintEnd_toStartOf="@id/btn_watch_tutorial"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cd_instruction" />
@@ -191,22 +191,10 @@
                 android:text="@string/btn_text_watch_tutorial"
                 android:textColor="@color/md_theme_light_primary"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btn_know_more"
-                app:layout_constraintTop_toTopOf="@id/btn_know_more"
+                app:layout_constraintStart_toEndOf="@id/btn_share_dish"
+                app:layout_constraintTop_toTopOf="@id/btn_share_dish"
                 app:strokeColor="@color/md_theme_light_primary"
                 app:strokeWidth="2dp" />
-
-            <Button
-                android:id="@+id/btn_share_dish"
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_text_share_dish"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_know_more"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="40dp"/>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

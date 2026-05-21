@@ -1,34 +1,34 @@
 package com.example.cuisineapp.ui.details
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.cuisineapp.R
+import com.example.cuisineapp.data.DishRepository
+import com.example.cuisineapp.data.FavoriteManger
+import com.example.cuisineapp.model.Dish
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetailsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var favoriteManger: FavoriteManger
+    private var mainDishId: String? = null
+    private lateinit var mainDish: Dish
+    private  var isFavDish: Boolean = false
+    lateinit var dishImageView: ImageView
+    lateinit var dishNameTextView: TextView
+    lateinit var dishCountryTextView: TextView
+    lateinit var dishCategoryTextView: TextView
+    lateinit var dishRatingTextView: TextView
+    lateinit var dishTimeTextView: TextView
+    lateinit var dishInstructionTextView: TextView
+    lateinit var backBtn: ImageView
+    lateinit var favoriteBtn: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +38,63 @@ class DetailsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_details, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mainDishId = requireArguments().getString("DISH_ID")
+        mainDish = DishRepository.getDishById(mainDishId ?: "") ?: return
+
+        favoriteManger = FavoriteManger(requireContext())
+        isFavDish = favoriteManger.isFavorite(mainDish.idMeal)
+
+        dishImageView = view.findViewById(R.id.iv_dish_image)
+        dishNameTextView = view.findViewById(R.id.tv_dish_name)
+        dishCountryTextView = view.findViewById(R.id.tv_dish_country)
+        dishCategoryTextView = view.findViewById(R.id.tv_dish_category)
+        dishRatingTextView = view.findViewById(R.id.tv_dish_rating)
+        dishTimeTextView = view.findViewById(R.id.tv_dish_time)
+        dishInstructionTextView = view.findViewById(R.id.tv_instruction)
+
+//        Log.e("checkMeow","${R.id.iv_fav_icon}")
+        backBtn = view.findViewById(R.id.iv_back_btn)
+       favoriteBtn = view.findViewById(R.id.bhumik)
+
+        bindData()
+        setClickEventForBtn()
+    }
+
+    private fun bindData() {
+        Glide.with(requireContext()).load(mainDish.strMealThumb)
+            .placeholder(R.drawable.ic_placeholder_image).error(R.drawable.ic_error_image)
+            .into(dishImageView)
+
+        dishNameTextView.text = mainDish.strMeal
+        dishCountryTextView.text = mainDish.strCountry
+        dishCategoryTextView.text = mainDish.strCategory
+        dishRatingTextView.text = mainDish.rating
+        dishTimeTextView.text = mainDish.cookingTime
+        dishInstructionTextView.text = mainDish.strInstructions
+
+        favoriteBtn.isSelected = isFavDish
+
+        if (isFavDish) {
+            favoriteBtn.setImageResource(R.drawable.ic_favorite_filled)
+        } else {
+            favoriteBtn.setImageResource(R.drawable.ic_favorite_outlined)
+        }
+    }
+
+    private fun setClickEventForBtn() {
+        favoriteBtn.setOnClickListener {
+            favoriteManger.toggleFavorite(mainDish.idMeal)
+            if (isFavDish) {
+                favoriteBtn.setImageResource(R.drawable.ic_favorite_filled)
+            } else {
+                favoriteBtn.setImageResource(R.drawable.ic_favorite_outlined)
             }
+        }
+
+        backBtn.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 }
