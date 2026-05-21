@@ -1,20 +1,23 @@
 package com.example.cuisineapp.ui.main
 
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.viewpager2.widget.ViewPager2
+import androidx.fragment.app.Fragment
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
+import com.example.cuisineapp.ui.details.DetailsFragment
+import com.example.cuisineapp.ui.favorites.FavoritesFragment
+import com.example.cuisineapp.ui.home.HomeFragment
+import com.example.cuisineapp.ui.settings.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var mainViewPager: ViewPager2
     lateinit var mainBottomNavigation: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,59 +31,46 @@ class MainActivity : AppCompatActivity() {
         }
 
         DishRepository.loadDishes(this)
-        setupViewPager()
+
         setupBottomNav()
-        connectPagerBottomNav()
         if (savedInstanceState == null) {
-            mainViewPager.currentItem = 0
+            inflateFragment(HomeFragment())
         }
-        //Handle BackButton Gesture
-        onBackPressedDispatcher.addCallback(
-            this,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    if(mainViewPager.currentItem != 0) {
-                        mainViewPager.setCurrentItem(0, false)
-                    } else {
-                        finish()
-                    }
-                }
-            }
-        )
-    }
 
-    private fun setupViewPager() {
-        mainViewPager = findViewById(R.id.view_pager_main)
-        mainViewPager.adapter = MainPagerAdapter(this)
-
+        supportFragmentManager.addOnBackStackChangedListener {
+            showBottomNav()
+        }
     }
 
     private fun setupBottomNav() {
         mainBottomNavigation = findViewById(R.id.bottom_navigation_main)
         mainBottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_home -> mainViewPager.setCurrentItem(0,false)
-                R.id.nav_favourites -> mainViewPager.setCurrentItem(1, false)
-                R.id.nav_settings -> mainViewPager.setCurrentItem(2, false)
+                R.id.nav_home -> inflateFragment(HomeFragment())
+                R.id.nav_favourites -> inflateFragment(FavoritesFragment())
+                R.id.nav_settings -> inflateFragment(SettingsFragment())
             }
             true
         }
-
     }
 
-    private fun connectPagerBottomNav() {
-        mainViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                mainBottomNavigation.selectedItemId = when (position) {
-                    0 -> R.id.nav_home
-                    1 -> R.id.nav_favourites
-                    2 -> R.id.nav_settings
-                    else -> R.id.nav_home
-                }
+    private fun inflateFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container_main, fragment)
+            if (fragment !is HomeFragment) {
+                addToBackStack("home_fragment")
             }
+            commit()
         }
-        )
+        showBottomNav(fragment)
     }
 
+    private fun showBottomNav(fragment: Fragment? = null) {
+        val currentFragment = fragment ?: supportFragmentManager.findFragmentById(R.id.fragment_container_main)
+        if (currentFragment is DetailsFragment) {
+            mainBottomNavigation.visibility = View.GONE
+        } else {
+            mainBottomNavigation.visibility = View.VISIBLE
+        }
+    }
 }

@@ -30,7 +30,7 @@
         app:tint="@color/md_theme_light_onSurface" />
 
     <ImageView
-        android:id="@+id/bhumik"
+        android:id="@+id/iv_fav_btn"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginTop="32dp"
@@ -173,11 +173,11 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/btn_share_dish"
+                android:id="@+id/btn_know_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/btn_text_share_dish"
+                android:text="@string/btn_know_more_info"
                 app:layout_constraintEnd_toStartOf="@id/btn_watch_tutorial"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cd_instruction" />
@@ -191,10 +191,11 @@
                 android:text="@string/btn_text_watch_tutorial"
                 android:textColor="@color/md_theme_light_primary"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btn_share_dish"
-                app:layout_constraintTop_toTopOf="@id/btn_share_dish"
+                app:layout_constraintStart_toEndOf="@id/btn_know_more"
+                app:layout_constraintTop_toTopOf="@id/btn_know_more"
                 app:strokeColor="@color/md_theme_light_primary"
                 app:strokeWidth="2dp" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
