@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import androidx.navigation.fragment.navArgs
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
@@ -16,6 +17,7 @@ import com.example.cuisineapp.model.Dish
 
 class DetailsFragment : Fragment() {
 
+    private val args: DetailsFragmentArgs by navArgs()
     private lateinit var favoriteManger: FavoriteManger
     private var mainDishId: String? = null
     private lateinit var mainDish: Dish
@@ -41,7 +43,7 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainDishId = requireArguments().getString("DISH_ID")
+        mainDishId = args.dishId
         mainDish = DishRepository.getDishById(mainDishId ?: "") ?: return
 
         favoriteManger = FavoriteManger(requireContext())

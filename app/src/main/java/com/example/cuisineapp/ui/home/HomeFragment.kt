@@ -1,19 +1,17 @@
 package com.example.cuisineapp.ui.home
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
 import com.example.cuisineapp.model.Dish
-import com.example.cuisineapp.ui.details.DetailsFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() {
 
@@ -34,19 +32,10 @@ class HomeFragment : Fragment() {
         favoriteManger = FavoriteManger(requireContext())
 
         val onDishClick: (Dish) -> Unit = { clickedDish ->
-
-            val detailsFragment = DetailsFragment()
-
-            val bundle = Bundle()
-            bundle.putString("DISH_ID",clickedDish.idMeal)
-
-            detailsFragment.arguments = bundle
-
-            requireActivity().supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_container_main, detailsFragment)
-                .addToBackStack(null)
-                .commit()
+            val action =  HomeFragmentDirections.actionHomeToDetails(
+                clickedDish.idMeal
+            )
+            findNavController().navigate(action)
         }
 
         val onFavoriteClick: (Dish) -> Unit = { clickedDish ->
