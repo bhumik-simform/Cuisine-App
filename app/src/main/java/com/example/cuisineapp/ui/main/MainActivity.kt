@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.ui.details.DetailsFragment
@@ -26,51 +28,29 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
         DishRepository.loadDishes(this)
 
         setupBottomNav()
-        if (savedInstanceState == null) {
-            inflateFragment(HomeFragment())
-        }
-
-        supportFragmentManager.addOnBackStackChangedListener {
-            showBottomNav()
-        }
     }
 
     private fun setupBottomNav() {
         mainBottomNavigation = findViewById(R.id.bottom_navigation_main)
-        mainBottomNavigation.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_home -> inflateFragment(HomeFragment())
-                R.id.nav_favourites -> inflateFragment(FavoritesFragment())
-                R.id.nav_settings -> inflateFragment(SettingsFragment())
-            }
-            true
-        }
-    }
 
-    private fun inflateFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_container_main, fragment)
-            if (fragment !is HomeFragment) {
-                addToBackStack("home_fragment")
-            }
-            commit()
-        }
-        showBottomNav(fragment)
-    }
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_main) as NavHostFragment
+        val navController = navHostFragment.navController
 
-    private fun showBottomNav(fragment: Fragment? = null) {
-        val currentFragment = fragment ?: supportFragmentManager.findFragmentById(R.id.fragment_container_main)
-        if (currentFragment is DetailsFragment) {
-            mainBottomNavigation.visibility = View.GONE
-        } else {
-            mainBottomNavigation.visibility = View.VISIBLE
+        mainBottomNavigation.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.fragment_details) {
+                mainBottomNavigation.visibility = View.GONE
+            } else {
+                mainBottomNavigation.visibility = View.VISIBLE
+            }
         }
     }
 }

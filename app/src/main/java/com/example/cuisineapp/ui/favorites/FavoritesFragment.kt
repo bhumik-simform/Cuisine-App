@@ -8,15 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Visibility
+import androidx.navigation.fragment.findNavController
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
 import com.example.cuisineapp.model.Dish
-import com.example.cuisineapp.ui.details.DetailsFragment
 import com.example.cuisineapp.ui.home.DishListAdapter
-import com.google.android.material.bottomnavigation.BottomNavigationView
-
 class FavoritesFragment : Fragment() {
 
     private lateinit var favoriteManger: FavoriteManger
@@ -41,19 +38,8 @@ class FavoritesFragment : Fragment() {
         emptyView = view.findViewById(R.id.view_empty_state)
 
         val onDishClicked: (Dish) -> Unit = { clickedDish ->
-            val detailsFragment = DetailsFragment()
-
-            val bundle = Bundle()
-            bundle.putString("DISH_ID", clickedDish.idMeal)
-
-            detailsFragment.arguments = bundle
-
-
-            requireActivity().supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_container_main, detailsFragment)
-                .addToBackStack(null)
-                .commit()
+            val action = FavoritesFragmentDirections.actionFavouriteToDetails(clickedDish.idMeal)
+            findNavController().navigate(action)
         }
 
         val onFavoriteIconClick: (Dish) -> Unit = { clickedDish ->
