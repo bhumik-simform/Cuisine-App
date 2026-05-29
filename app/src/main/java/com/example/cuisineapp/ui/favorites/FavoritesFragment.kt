@@ -1,6 +1,7 @@
 package com.example.cuisineapp.ui.favorites
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.navigation.fragment.findNavController
+import com.example.cuisineapp.DishDetailActivity
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
@@ -38,8 +40,9 @@ class FavoritesFragment : Fragment() {
         emptyView = view.findViewById(R.id.view_empty_state)
 
         val onDishClicked: (Dish) -> Unit = { clickedDish ->
-            val action = FavoritesFragmentDirections.actionFavouriteToDetails(clickedDish.idMeal)
-            findNavController().navigate(action)
+            val intent = Intent(requireContext(), DishDetailActivity::class.java)
+            intent.putExtra("dish_id",clickedDish.idMeal)
+            startActivity(intent)
         }
 
         val onFavoriteIconClick: (Dish) -> Unit = { clickedDish ->
