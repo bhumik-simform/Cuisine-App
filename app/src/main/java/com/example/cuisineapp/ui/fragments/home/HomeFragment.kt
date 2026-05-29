@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cuisineapp.ui.DishDetailActivity
-import com.example.cuisineapp.ui.fragments.home.FilterAdapter
 import com.example.cuisineapp.ViewModel.HomeViewModel
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
