@@ -9,16 +9,19 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
+import com.example.cuisineapp.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var mainBottomNavigation: BottomNavigationView
+
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate((layoutInflater))
+        setContentView(binding.root)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
@@ -26,17 +29,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         DishRepository.loadDishes(this)
-
         setupBottomNav()
     }
 
     private fun setupBottomNav() {
-        mainBottomNavigation = findViewById(R.id.bottom_navigation_main)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container_main) as NavHostFragment
         val navController = navHostFragment.navController
 
-        mainBottomNavigation.setupWithNavController(navController)
+        binding.bottomNavigationMain.setupWithNavController(navController)
     }
 }

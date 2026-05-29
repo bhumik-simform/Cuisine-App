@@ -14,30 +14,41 @@ import com.example.cuisineapp.ui.DishDetailActivity
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
+import com.example.cuisineapp.databinding.ActivityDishDetailBinding
+import com.example.cuisineapp.databinding.FragmentFavoritesBinding
+import com.example.cuisineapp.databinding.FragmentHomeBinding
 import com.example.cuisineapp.model.Dish
 import com.example.cuisineapp.ui.share.DishListAdapter
 class FavoritesFragment : Fragment() {
 
     private lateinit var favoriteManger: FavoriteManger
-    private lateinit var adapter: DishListAdapter
+    private lateinit var favDishAdapter: DishListAdapter
 
-    private lateinit var favoritesRecyclerView: RecyclerView
-    private lateinit var emptyView: View
+    private  var _binding: FragmentFavoritesBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorites, container, false)
+        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         favoriteManger = FavoriteManger(requireContext())
-        favoritesRecyclerView = view.findViewById(R.id.recycler_view_favorites)
-        emptyView = view.findViewById(R.id.view_empty_state)
+
+        setUpRecyclerView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+       loadFavoriteDishes(binding.recyclerViewFavorites,binding.viewEmptyState)
+    }
+    private fun setUpRecyclerView() {
 
         val onDishClicked: (Dish) -> Unit = { clickedDish ->
             val intent = Intent(requireContext(), DishDetailActivity::class.java)
@@ -47,23 +58,15 @@ class FavoritesFragment : Fragment() {
 
         val onFavoriteIconClick: (Dish) -> Unit = { clickedDish ->
             favoriteManger.toggleFavorite(clickedDish.idMeal)
-
-            loadFavoriteDishes(favoritesRecyclerView,emptyView)
+            loadFavoriteDishes(binding.recyclerViewFavorites,binding.viewEmptyState)
         }
 
-        adapter = DishListAdapter(onDishClicked, onFavoriteIconClick)
+        favDishAdapter = DishListAdapter(onDishClicked, onFavoriteIconClick)
 
-        favoritesRecyclerView.layoutManager = LinearLayoutManager(context)
-        favoritesRecyclerView.adapter = adapter
+        binding.recyclerViewFavorites.layoutManager = LinearLayoutManager(context)
+        binding.recyclerViewFavorites.adapter = favDishAdapter
 
-        loadFavoriteDishes(favoritesRecyclerView,emptyView)
-        adapter.notifyDataSetChanged()
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onResume() {
-        super.onResume()
-       loadFavoriteDishes(favoritesRecyclerView,emptyView)
+        loadFavoriteDishes(binding.recyclerViewFavorites,binding.viewEmptyState)
     }
     private fun loadFavoriteDishes(recyclerView: RecyclerView, emptyView: View) {
         val allFavoriteIds = favoriteManger.getFavoritesIds()
@@ -78,6 +81,6 @@ class FavoritesFragment : Fragment() {
             emptyView.visibility = View.GONE
         }
 
-        adapter.submitList(favoriteDishes)
+        favDishAdapter.submitList(favoriteDishes)
     }
 }

@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    app:layout_scrollFlags="scroll|enterAlways"
     android:layout_height="wrap_content"
     android:elevation="0dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:layout_scrollFlags="scroll|enterAlways">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -23,8 +23,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold"
-                android:textColor="@color/md_theme_light_onBackground"
                 android:text="@string/title_home_fragment"
+                android:textColor="@color/md_theme_light_onBackground"
                 android:textSize="24sp" />
 
             <Space
@@ -33,24 +33,24 @@
                 android:layout_weight="1" />
 
             <ImageView
-                android:contentDescription="@string/content_description_search_button"
-                app:tint="@color/md_theme_light_onBackground"
                 android:id="@+id/iv_search"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="12dp"
+                android:contentDescription="@string/content_description_search_button"
                 android:src="@drawable/ic_search_outline"
-                app:layout_constraintStart_toEndOf="@id/tv_home_title" />
+                app:layout_constraintStart_toEndOf="@id/tv_home_title"
+                app:tint="@color/md_theme_light_onBackground" />
 
 
             <ImageView
-                android:contentDescription="@string/content_description_account_button"
-                app:tint="@color/md_theme_light_onBackground"
                 android:id="@+id/iv_account"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_account_circle" />
+                android:contentDescription="@string/content_description_account_button"
+                android:src="@drawable/ic_account_circle"
+                app:tint="@color/md_theme_light_onBackground" />
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 

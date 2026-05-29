@@ -5,38 +5,37 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cuisineapp.R
+import com.example.cuisineapp.databinding.ItemFiltersBinding
 import com.google.android.material.chip.Chip
 
 class FilterAdapter(
     private val dishCountriesList: List<String>,
     private val filterChipClicked: (Chip) -> Unit
-): RecyclerView.Adapter<FilterViewHolder>() {
+) : RecyclerView.Adapter<FilterAdapter.FilterViewHolder>() {
     override fun onCreateViewHolder(
-        p0: ViewGroup,
-        p1: Int
+        parent: ViewGroup,
+        viewType: Int
     ): FilterViewHolder {
-        val itemView = LayoutInflater.from(p0.context).inflate(R.layout.item_filters,p0,false)
-        return FilterViewHolder(itemView)
+        val binding = ItemFiltersBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return FilterViewHolder(binding)
     }
 
     override fun onBindViewHolder(
-        p0: FilterViewHolder,
-        p1: Int
+        holder: FilterViewHolder,
+        position: Int
     ) {
-        val item = dishCountriesList.elementAt(p1)
-        p0.bindData(item)
+        val item = dishCountriesList.elementAt(position)
+        holder.bindData(item)
     }
 
     override fun getItemCount() = dishCountriesList.count()
 
-    inner class FilterViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val filterChip: Chip = itemView.findViewById(R.id.chip_filter)
-
+    inner class FilterViewHolder(val binding: ItemFiltersBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindData(itemCountry: String) {
-            filterChip.text = itemCountry
-           filterChip.setOnClickListener {
-               filterChipClicked(filterChip)
-           }
+            binding.chipFilter.text = itemCountry
+            binding.chipFilter.setOnClickListener {
+                filterChipClicked(binding.chipFilter)
+            }
         }
     }
 }
