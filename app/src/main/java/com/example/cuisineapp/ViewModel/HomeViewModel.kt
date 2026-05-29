@@ -1,5 +1,4 @@
-package com.example.cuisineapp
-
+package com.example.cuisineapp.ViewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

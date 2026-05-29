@@ -1,21 +1,15 @@
-package com.example.cuisineapp.ui.main
+package com.example.cuisineapp.ui
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
-import com.example.cuisineapp.ui.favorites.FavoritesFragment
-import com.example.cuisineapp.ui.home.HomeFragment
-import com.example.cuisineapp.ui.settings.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
 
 class MainActivity : AppCompatActivity() {
 

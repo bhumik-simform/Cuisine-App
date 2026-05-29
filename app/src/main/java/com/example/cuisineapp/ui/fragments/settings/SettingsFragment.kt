@@ -1,4 +1,4 @@
-package com.example.cuisineapp.ui.settings
+package com.example.cuisineapp.ui.fragments.settings
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

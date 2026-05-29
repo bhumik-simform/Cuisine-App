@@ -4,7 +4,7 @@
     android:id="@+id/dish_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DishDetailActivity">
+    tools:context=".ui.DishDetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"

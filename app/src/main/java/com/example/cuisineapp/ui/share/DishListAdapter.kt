@@ -1,4 +1,4 @@
-package com.example.cuisineapp.ui.home
+package com.example.cuisineapp.ui.share
 
 import android.view.LayoutInflater
 import android.view.View

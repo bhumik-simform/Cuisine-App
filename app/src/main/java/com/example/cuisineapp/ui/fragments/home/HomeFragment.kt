@@ -1,4 +1,4 @@
-package com.example.cuisineapp.ui.home
+package com.example.cuisineapp.ui.fragments.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,13 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cuisineapp.DishDetailActivity
-import com.example.cuisineapp.FilterAdapter
-import com.example.cuisineapp.HomeViewModel
+import com.example.cuisineapp.ui.DishDetailActivity
+import com.example.cuisineapp.ui.fragments.home.FilterAdapter
+import com.example.cuisineapp.ViewModel.HomeViewModel
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
 import com.example.cuisineapp.databinding.FragmentHomeBinding
 import com.example.cuisineapp.model.Dish
+import com.example.cuisineapp.ui.share.DishListAdapter
 
 class HomeFragment : Fragment() {
 
@@ -70,7 +71,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        dishAdapter = DishListAdapter(onDishClick,onFavoriteClick)
+        dishAdapter = DishListAdapter(onDishClick, onFavoriteClick)
         binding.recyclerViewHomeDish.layoutManager = LinearLayoutManager(context)
         binding.recyclerViewHomeDish.adapter = dishAdapter
 
