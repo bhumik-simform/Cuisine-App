@@ -11,7 +11,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
-import com.example.cuisineapp.ui.details.DetailsFragment
 import com.example.cuisineapp.ui.favorites.FavoritesFragment
 import com.example.cuisineapp.ui.home.HomeFragment
 import com.example.cuisineapp.ui.settings.SettingsFragment
@@ -40,17 +39,10 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNav() {
         mainBottomNavigation = findViewById(R.id.bottom_navigation_main)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_main) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container_main) as NavHostFragment
         val navController = navHostFragment.navController
 
         mainBottomNavigation.setupWithNavController(navController)
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.fragment_details) {
-                mainBottomNavigation.visibility = View.GONE
-            } else {
-                mainBottomNavigation.visibility = View.VISIBLE
-            }
-        }
     }
 }

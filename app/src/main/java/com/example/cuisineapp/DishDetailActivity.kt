@@ -8,19 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
 import com.example.cuisineapp.model.Dish
-import com.example.cuisineapp.ui.details.DetailsFragmentArgs
-import kotlin.getValue
 
 class  DishDetailActivity : AppCompatActivity() {
 
-    private val args: DetailsFragmentArgs by navArgs()
     private lateinit var favoriteManger: FavoriteManger
     private var mainDishId: String? = null
     private lateinit var mainDish: Dish

@@ -13,7 +13,9 @@
         android:elevation="0dp"
         android:background="@color/md_theme_light_background"
         android:layout_height="wrap_content">
-        <include layout="@layout/view_home_appbar"/>
+        <include
+            android:id="@+id/appbar_home"
+            layout="@layout/view_home_appbar"/>
     </com.google.android.material.appbar.AppBarLayout>
 
 
