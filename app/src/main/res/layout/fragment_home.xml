@@ -9,17 +9,19 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_scrollFlags="scroll|enterAlways">
+        app:liftOnScroll="true"
+        android:elevation="0dp"
+        android:background="@color/md_theme_light_background"
+        android:layout_height="wrap_content">
         <include layout="@layout/view_home_appbar"/>
     </com.google.android.material.appbar.AppBarLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:id="@+id/recycler_view_home_dish"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_dish"/>
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        tools:listitem="@layout/item_dish" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
