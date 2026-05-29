@@ -1,11 +1,10 @@
-package com.example.cuisineapp
+package com.example.cuisineapp.ui.fragments.home
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cuisineapp.FilterAdapter.FilterViewHolder
-import com.example.cuisineapp.model.Dish
+import com.example.cuisineapp.R
 import com.google.android.material.chip.Chip
 
 class FilterAdapter(

@@ -1,4 +1,4 @@
-package com.example.cuisineapp
+package com.example.cuisineapp.ui
 
 import android.os.Bundle
 import android.widget.ImageView
@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
+import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
 import com.example.cuisineapp.model.Dish

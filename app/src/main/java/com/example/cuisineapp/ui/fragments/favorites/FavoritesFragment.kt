@@ -1,4 +1,4 @@
-package com.example.cuisineapp.ui.favorites
+package com.example.cuisineapp.ui.fragments.favorites
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.navigation.fragment.findNavController
-import com.example.cuisineapp.DishDetailActivity
+import com.example.cuisineapp.ui.DishDetailActivity
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
 import com.example.cuisineapp.model.Dish
-import com.example.cuisineapp.ui.home.DishListAdapter
+import com.example.cuisineapp.ui.share.DishListAdapter
 class FavoritesFragment : Fragment() {
 
     private lateinit var favoriteManger: FavoriteManger
