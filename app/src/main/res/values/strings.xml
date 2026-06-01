@@ -16,4 +16,5 @@
     <string name="content_description_search_button">Search Button</string>
     <string name="content_description_account_button">Account Button</string>
     <string name="title_home_fragment">Discover Cusine</string>
+    <string name="menu_title_search">Search</string>
 </resources>

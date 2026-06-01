@@ -5,15 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.model.Dish
+import java.time.temporal.TemporalQuery
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel : ViewModel() {
 
-    private val _displayedDishes= MutableLiveData<List<Dish>>()
+    private val _displayedDishes = MutableLiveData<List<Dish>>()
 
     val displayedDishes: LiveData<List<Dish>>
         get() = _displayedDishes
 
     private var selectedCountries = mutableSetOf<String>()
+
+    private var searchQuery = ""
 
     init {
         _displayedDishes.value = DishRepository.getAllDishes()
@@ -28,13 +31,25 @@ class HomeViewModel: ViewModel() {
         filterList()
     }
 
+    fun updateSearchQuery(query: String?) {
+        searchQuery = query?.lowercase() ?: ""
+        filterList()
+    }
+
     private fun filterList() {
-        if(selectedCountries.isEmpty()) {
-            _displayedDishes.value = DishRepository.getAllDishes()
-        } else {
-            _displayedDishes.value = DishRepository.getAllDishes().filter {
+        var filteredList = DishRepository.getAllDishes()
+
+        if (selectedCountries.isNotEmpty()) {
+            filteredList = filteredList.filter {
                 selectedCountries.contains(it.strCountry)
             }
         }
+
+        if (searchQuery.isNotEmpty()) {
+            filteredList = filteredList.filter {
+                it.strMeal.lowercase().contains(searchQuery)
+            }
+        }
+        _displayedDishes.value = filteredList
     }
 }
