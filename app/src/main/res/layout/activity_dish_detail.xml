@@ -171,8 +171,6 @@
                 app:layout_constraintTop_toTopOf="@id/btn_know_more"
                 app:strokeColor="@color/md_theme_light_primary"
                 app:strokeWidth="2dp" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

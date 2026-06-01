@@ -1,12 +1,17 @@
-package com.example.cuisineapp.ViewModel
+package com.example.cuisineapp.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.model.Dish
-import java.time.temporal.TemporalQuery
-
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.launch
 class HomeViewModel : ViewModel() {
 
     private val _displayedDishes = MutableLiveData<List<Dish>>()
@@ -16,10 +21,13 @@ class HomeViewModel : ViewModel() {
 
     private var selectedCountries = mutableSetOf<String>()
 
-    private var searchQuery = ""
+    private val _searchQuery = MutableStateFlow("")
+
 
     init {
         _displayedDishes.value = DishRepository.getAllDishes()
+
+        observeSearchQuery()
     }
 
     fun toggleFilter(country: String) {
@@ -31,9 +39,8 @@ class HomeViewModel : ViewModel() {
         filterList()
     }
 
-    fun updateSearchQuery(query: String?) {
-        searchQuery = query?.lowercase() ?: ""
-        filterList()
+    fun updateSearchQuery(query: String) {
+        _searchQuery.value = query.lowercase()
     }
 
     private fun filterList() {
@@ -45,11 +52,21 @@ class HomeViewModel : ViewModel() {
             }
         }
 
-        if (searchQuery.isNotEmpty()) {
+        if (_searchQuery.value.isNotEmpty()) {
             filteredList = filteredList.filter {
-                it.strMeal.lowercase().contains(searchQuery)
+                it.strMeal.lowercase().contains(_searchQuery.value)
             }
         }
         _displayedDishes.value = filteredList
+    }
+
+    @OptIn(FlowPreview::class)
+    private fun observeSearchQuery() {
+        viewModelScope.launch {
+            _searchQuery.debounce(500).distinctUntilChanged().collect {
+                Log.d("SEARCH",it)
+                filterList()
+            }
+        }
     }
 }

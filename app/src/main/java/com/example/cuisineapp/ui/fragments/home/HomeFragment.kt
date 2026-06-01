@@ -12,7 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cuisineapp.R
 import com.example.cuisineapp.ui.DishDetailActivity
-import com.example.cuisineapp.ViewModel.HomeViewModel
+import com.example.cuisineapp.viewModel.HomeViewModel
 import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
 import com.example.cuisineapp.databinding.FragmentHomeBinding
@@ -104,15 +104,12 @@ class HomeFragment : Fragment() {
         searchView.queryHint = "Search here..."
 
         searchView.setOnQueryTextListener( object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                viewModel.updateSearchQuery(p0)
+            override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-                viewModel.updateSearchQuery(p0)
-                Log.d("Meow","Query: $p0")
-//                Log.d("Meow","${searchView.hasFocus()}")
+            override fun onQueryTextChange(query: String?): Boolean {
+                viewModel.updateSearchQuery(query.orEmpty())
                 return false
             }
 
