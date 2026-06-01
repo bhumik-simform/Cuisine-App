@@ -29,4 +29,6 @@ object DishRepository {
     fun getAllDishes(): List<Dish> = allDishes
 
     fun getDishById(id: String): Dish? = allDishes.find { it.idMeal == id }
+
+    fun getAllCountries(): List<String> = allDishes.map { it.strCountry }.distinct().sorted()
 }
