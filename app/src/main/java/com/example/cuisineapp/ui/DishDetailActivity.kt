@@ -1,11 +1,9 @@
 package com.example.cuisineapp.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
@@ -14,6 +12,7 @@ import com.example.cuisineapp.data.DishRepository
 import com.example.cuisineapp.data.FavoriteManger
 import com.example.cuisineapp.databinding.ActivityDishDetailBinding
 import com.example.cuisineapp.model.Dish
+import androidx.core.net.toUri
 
 class  DishDetailActivity : AppCompatActivity() {
 
@@ -42,7 +41,7 @@ class  DishDetailActivity : AppCompatActivity() {
         isFavDish = favoriteManger.isFavorite(mainDish.idMeal)
 
         bindData()
-        setClickEventForBtn()
+        setClickEventForBtns()
     }
 
     private fun bindData() {
@@ -61,7 +60,7 @@ class  DishDetailActivity : AppCompatActivity() {
         updateFavBtnUI()
     }
 
-    private fun setClickEventForBtn() {
+    private fun setClickEventForBtns() {
         binding.toolbarDishDetail.ivFavBtn.setOnClickListener {
             favoriteManger.toggleFavorite(mainDish.idMeal)
             isFavDish = favoriteManger.isFavorite(mainDish.idMeal)
@@ -74,6 +73,19 @@ class  DishDetailActivity : AppCompatActivity() {
 
         binding.toolbarDishDetail.titleToolbarDishDetail.setNavigationOnClickListener {
             finish()
+        }
+
+        binding.btnKnowMore.setOnClickListener {
+            val intent = Intent(this, WebviewActivity::class.java)
+            intent.putExtra("webUrl", mainDish.strSource)
+            startActivity(intent)
+        }
+
+        binding.btnWatchTutorial.setOnClickListener {
+            val tutorialUrl = mainDish.strYoutube
+            val intent = Intent(Intent.ACTION_VIEW, tutorialUrl.toUri())
+
+            startActivity(intent)
         }
     }
 
