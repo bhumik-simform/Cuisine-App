@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.cuisineapp.R
 import com.example.cuisineapp.data.DishRepository
@@ -84,7 +85,7 @@ class DetailsFragment : Fragment() {
         }
 
         backBtn.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
+            findNavController().popBackStack()
         }
     }
 

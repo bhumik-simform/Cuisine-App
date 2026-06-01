@@ -1,34 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <color name="black">#000000</color>
 
-    <color name="md_theme_light_primary">#FF7043</color>
+    <!-- Primary -->
+    <color name="md_theme_light_primary">#F97316</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
 
-    <color name="md_theme_light_primaryContainer">#FFDBCF</color>
-    <color name="md_theme_light_onPrimaryContainer">#331200</color>
+    <color name="md_theme_light_primaryContainer">#FFEDD5</color>
+    <color name="md_theme_light_onPrimaryContainer">#431407</color>
 
-    <color name="md_theme_light_background">#FEEFDB</color>
-    <color name="md_theme_light_onBackground">#2B2B2B</color>
+    <!-- Background -->
+    <color name="md_theme_light_background">#FAFAFA</color>
+    <color name="md_theme_light_onBackground">#111827</color>
 
+    <!-- Surface -->
     <color name="md_theme_light_surface">#FFFFFF</color>
-    <color name="md_theme_light_onSurface">#2B2B2B</color>
+    <color name="md_theme_light_onSurface">#111827</color>
 
-    <color name="md_theme_light_surfaceVariant">#F5EDE8</color>
+    <!-- Surface Variant -->
+    <color name="md_theme_light_surfaceVariant">#F3F4F6</color>
     <color name="md_theme_light_onSurfaceVariant">#6B7280</color>
 
-    <color name="md_theme_light_outline">#EAEAEA</color>
-    <color name="md_theme_light_outlineVariant">#D3C3BC</color>
+    <!-- Outline -->
+    <color name="md_theme_light_outline">#E5E7EB</color>
+    <color name="md_theme_light_outlineVariant">#D1D5DB</color>
 
-    <color name="md_theme_light_error">#EF5350</color>
+    <!-- Error -->
+    <color name="md_theme_light_error">#DC2626</color>
     <color name="md_theme_light_onError">#FFFFFF</color>
-    <color name="md_theme_light_errorContainer">#FFDAD6</color>
-    <color name="md_theme_light_onErrorContainer">#410002</color>
+    <color name="md_theme_light_errorContainer">#FEE2E2</color>
+    <color name="md_theme_light_onErrorContainer">#7F1D1D</color>
 
-    <color name="accent_green">#4CAF50</color>
+    <!-- Accent -->
+    <color name="accent_green">#22C55E</color>
 
-    <color name="star_active">#F58514</color>
-    <color name="star_inactive">#E0E0E0</color>
+    <!-- Rating Stars -->
+    <color name="star_active">#F59E0B</color>
+    <color name="star_inactive">#D1D5DB</color>
 
 </resources>

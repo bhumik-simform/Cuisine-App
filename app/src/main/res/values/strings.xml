@@ -13,4 +13,7 @@
     <string name="btn_know_more_info">Know More</string>
     <string name="btn_text_share_dish">Share Dish</string>
     <string name="tv_text_instructions">Instructions</string>
+    <string name="content_description_search_button">Search Button</string>
+    <string name="content_description_account_button">Account Button</string>
+    <string name="title_home_fragment">Discover Cusine</string>
 </resources>
