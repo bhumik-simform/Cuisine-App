@@ -16,7 +16,6 @@ import com.example.cuisineapp.databinding.ActivityDishDetailBinding
 import com.example.cuisineapp.databinding.ItemDishBinding
 import com.example.cuisineapp.model.Dish
 import com.google.android.material.imageview.ShapeableImageView
-
 class DishListAdapter(
     private val onItemClicked: (Dish) -> Unit,
     private val onFavoriteImgClicked: (Dish) -> Unit
