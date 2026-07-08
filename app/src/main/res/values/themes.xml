@@ -1,9 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.CuisineApp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.CuisineApp" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+        <item name="android:colorBackground">@color/md_theme_light_background</item>
+        <item name="colorSurface">@color/md_theme_light_surface</item>
+        <item name="colorError">@color/md_theme_light_error</item>
+        
     </style>
 
     <style name="Theme.CuisineApp" parent="Base.Theme.CuisineApp" />
+
+    <!-- Splash Screen Theme to disable system splash on Android 12+ -->
+    <style name="Theme.App.SplashScreen" parent="Theme.CuisineApp">
+        <item name="android:windowIsTranslucent" tools:targetApi="s">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

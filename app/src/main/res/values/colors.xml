@@ -1,5 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <color name="black">#000000</color>
+
+    <!-- Primary -->
+    <color name="md_theme_light_primary">#F97316</color>
+    <color name="md_theme_light_onPrimary">#FFFFFF</color>
+
+    <color name="md_theme_light_primaryContainer">#FFEDD5</color>
+    <color name="md_theme_light_onPrimaryContainer">#431407</color>
+
+    <!-- Background -->
+    <color name="md_theme_light_background">#FAFAFA</color>
+    <color name="md_theme_light_onBackground">#111827</color>
+
+    <!-- Surface -->
+    <color name="md_theme_light_surface">#FFFFFF</color>
+    <color name="md_theme_light_onSurface">#111827</color>
+
+    <!-- Surface Variant -->
+    <color name="md_theme_light_surfaceVariant">#F3F4F6</color>
+    <color name="md_theme_light_onSurfaceVariant">#6B7280</color>
+
+    <!-- Outline -->
+    <color name="md_theme_light_outline">#E5E7EB</color>
+    <color name="md_theme_light_outlineVariant">#D1D5DB</color>
+
+    <!-- Error -->
+    <color name="md_theme_light_error">#DC2626</color>
+    <color name="md_theme_light_onError">#FFFFFF</color>
+    <color name="md_theme_light_errorContainer">#FEE2E2</color>
+    <color name="md_theme_light_onErrorContainer">#7F1D1D</color>
+
+    <!-- Accent -->
+    <color name="accent_green">#22C55E</color>
+
+    <!-- Rating Stars -->
+    <color name="star_active">#F59E0B</color>
+    <color name="star_inactive">#D1D5DB</color>
+
 </resources>
